@@ -161,23 +161,27 @@ export default function App() {
       <main className="main">
         {tab === 'craft' && (
           <div className="craft-layout">
-            <section className="section" aria-label="今日のお題">
-              <DailyChallenge unlocked={unlocked} />
-            </section>
+            {/* 固定エリア：今日のお題 + 錬成スロット */}
+            <div className="craft-fixed">
+              <section className="section" aria-label="今日のお題">
+                <DailyChallenge unlocked={unlocked} />
+              </section>
 
-            <section className="section" aria-label="錬成スロット">
-              <h2 className="section-title">錬成スロット</h2>
-              <CraftingSlot
-                slot1={slot1}
-                slot2={slot2}
-                result={resultCard}
-                isCrafting={isCrafting}
-                onCraft={handleCraft}
-                onClear={handleClear}
-              />
-            </section>
+              <section className="section" aria-label="錬成スロット">
+                <h2 className="section-title">錬成スロット</h2>
+                <CraftingSlot
+                  slot1={slot1}
+                  slot2={slot2}
+                  result={resultCard}
+                  isCrafting={isCrafting}
+                  onCraft={handleCraft}
+                  onClear={handleClear}
+                />
+              </section>
+            </div>
 
-            <section className="section" aria-label="所持カード">
+            {/* スクロールエリア：所持カード */}
+            <div className="craft-scroll" aria-label="所持カード">
               <h2 className="section-title">
                 所持カード
                 <span className="section-sub">（タップしてスロットにセット）</span>
@@ -193,11 +197,10 @@ export default function App() {
                   />
                 ))}
               </div>
-            </section>
-
-            <button className="reset-btn" onClick={handleReset} aria-label="データリセット">
-              🔄 リセット
-            </button>
+              <button className="reset-btn" onClick={handleReset} aria-label="データリセット">
+                🔄 リセット
+              </button>
+            </div>
           </div>
         )}
 

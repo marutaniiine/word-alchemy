@@ -11,12 +11,13 @@ body {
   font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
   background: #080816;
   color: #fff;
-  min-height: 100vh;
-  overflow-x: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
 #root {
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 button {
@@ -35,10 +36,13 @@ button:focus-visible {
 ============================== */
 .app {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   max-width: 680px;
   margin: 0 auto;
-  padding: 0 16px 80px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 /* ==============================
@@ -76,7 +80,8 @@ button:focus-visible {
   position: relative;
   z-index: 1;
   text-align: center;
-  padding: 32px 0 16px;
+  padding: 20px 0 12px;
+  flex-shrink: 0;
 }
 
 .logo-title {
@@ -134,11 +139,12 @@ button:focus-visible {
   z-index: 1;
   display: flex;
   gap: 8px;
-  margin: 16px 0;
+  margin: 8px 0 12px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 14px;
   padding: 4px;
+  flex-shrink: 0;
 }
 
 .tab-btn {
@@ -171,13 +177,80 @@ button:focus-visible {
 .main {
   position: relative;
   z-index: 1;
+  flex: 1;
+  min-height: 0; /* flex子要素がはみ出さないよう必須 */
+  display: flex;
+  flex-direction: column;
 }
 
-.craft-layout,
+/* craft タブ：固定上部 + スクロール下部 */
+.craft-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 0;
+}
+
+.craft-fixed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.craft-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* スクロールバーを細くして馴染ませる */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,215,0,0.3) transparent;
+}
+
+.craft-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.craft-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.craft-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,215,0,0.3);
+  border-radius: 2px;
+}
+
+/* codex タブもスクロール対応 */
 .codex-layout {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 0 24px;
   gap: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,215,0,0.3) transparent;
+}
+
+.codex-layout::-webkit-scrollbar {
+  width: 4px;
+}
+
+.codex-layout::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.codex-layout::-webkit-scrollbar-thumb {
+  background: rgba(255,215,0,0.3);
+  border-radius: 2px;
 }
 
 /* ==============================
@@ -227,7 +300,8 @@ button:focus-visible {
   font-size: 0.75rem;
   cursor: pointer;
   transition: all 0.2s;
-  margin-top: 8px;
+  margin-top: 4px;
+  flex-shrink: 0;
 }
 
 .reset-btn:hover {
