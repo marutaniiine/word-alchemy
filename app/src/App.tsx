@@ -63,7 +63,7 @@ export default function App() {
     setIsCrafting(true)
 
     setTimeout(() => {
-      const outputId = findRecipe(slot1.id, slot2.id)
+      const outputId = findRecipe(slot1.id, slot2.id, unlocked)
       setIsCrafting(false)
 
       if (!outputId) {

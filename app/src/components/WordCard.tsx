@@ -34,7 +34,11 @@ export default function WordCard({ card, onClick, selected, isNew, size = 'norma
       {size === 'normal' && (
         <div className={styles.desc}>{card.description}</div>
       )}
-      {card.tier >= 2 && <div className={styles.tierBadge}>★{card.tier}</div>}
+      {card.tier >= 2 && (
+        <div className={[styles.tierBadge, card.tier === 4 ? styles.tierUltimate : ''].join(' ')}>
+          {'★'.repeat(card.tier)}
+        </div>
+      )}
       {isNew && <div className={styles.newBadge}>NEW!</div>}
     </div>
   )
