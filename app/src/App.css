@@ -1,0 +1,248 @@
+/* ==============================
+   Global Reset & Base
+============================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+  background: #080816;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+button:focus-visible {
+  outline: 2px solid #ffd700;
+  outline-offset: 2px;
+}
+
+/* ==============================
+   App Layout
+============================== */
+.app {
+  position: relative;
+  min-height: 100vh;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+/* ==============================
+   Background Particles
+============================== */
+.bg-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  top: calc(var(--i) * 5% + 2%);
+  left: calc(var(--i) * 4.8% + 2%);
+  animation: float calc(6s + var(--i) * 0.8s) ease-in-out infinite alternate;
+  opacity: 0.3;
+}
+
+@keyframes float {
+  from { transform: translateY(0px) translateX(0px); }
+  to { transform: translateY(-30px) translateX(10px); }
+}
+
+/* ==============================
+   Header
+============================== */
+.header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 32px 0 16px;
+}
+
+.logo-title {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  background: linear-gradient(135deg, #ffd700, #ff8c00, #ff6b35);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 2rem;
+  -webkit-text-fill-color: initial;
+  filter: drop-shadow(0 0 8px rgba(255,215,0,0.6));
+  animation: alchemySpin 4s ease-in-out infinite;
+}
+
+@keyframes alchemySpin {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(10deg) scale(1.1); }
+  75% { transform: rotate(-10deg) scale(1.1); }
+}
+
+.tagline {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  margin-top: 8px;
+  letter-spacing: 0.05em;
+}
+
+.stats {
+  margin-top: 12px;
+}
+
+.stat {
+  font-size: 0.85rem;
+  background: rgba(255,215,0,0.1);
+  border: 1px solid rgba(255,215,0,0.2);
+  color: rgba(255,215,0,0.8);
+  padding: 4px 16px;
+  border-radius: 20px;
+}
+
+/* ==============================
+   Tab Navigation
+============================== */
+.tabs {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 4px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  color: rgba(255,255,255,0.45);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.05em;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,140,0,0.1));
+  color: #ffd700;
+  box-shadow: 0 2px 8px rgba(255,215,0,0.1);
+}
+
+.tab-btn:hover:not(.active) {
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.05);
+}
+
+/* ==============================
+   Main Content
+============================== */
+.main {
+  position: relative;
+  z-index: 1;
+}
+
+.craft-layout,
+.codex-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==============================
+   Section
+============================== */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-sub {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+  font-weight: 400;
+}
+
+/* ==============================
+   Card Grid
+============================== */
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ==============================
+   Reset Button
+============================== */
+.reset-btn {
+  align-self: center;
+  padding: 8px 20px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.3);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+
+.reset-btn:hover {
+  border-color: rgba(255,100,100,0.3);
+  color: rgba(255,100,100,0.6);
+}
+
+/* ==============================
+   Responsive
+============================== */
+@media (max-width: 480px) {
+  .logo-title {
+    font-size: 1.6rem;
+  }
+  .card-grid {
+    gap: 8px;
+  }
+}
